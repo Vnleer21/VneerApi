@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 exports.config = {
     name: 'lyrics',
     version: '1.0.0',
-    author: 'August Quinn',
+    author: 'Biru',
     description: 'Get song lyrics from Google or Musixmatch.',
     category: 'music',
     usage: ['/lyrics?song=romanized%20oddloop%20frederoc%20'],
@@ -13,7 +13,7 @@ exports.config = {
 
 exports.initialize = async function ({ req, res }) {
     try {
-        // Check if there is a query parameter named 'song'
+        
         const songTitle = req.query.song;
         if (!songTitle) {
             return res.status(400).json({ error: "Please provide a song name to get lyrics." });
@@ -25,7 +25,7 @@ exports.initialize = async function ({ req, res }) {
         let lyrics = null;
         let artist = null;
 
-        // First attempt: Fetch lyrics from Google
+        
         try {
             const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(songTitle.replace(' ', '+'))}+lyrics`;
             const googleResponse = await axios.get(googleUrl, { headers });
@@ -42,7 +42,7 @@ exports.initialize = async function ({ req, res }) {
             console.log("Google lyrics fetch failed, trying Musixmatch...");
         }
 
-        // Fallback: If Google didn't provide lyrics, try Musixmatch
+        
         if (!lyrics) {
             try {
                 const musixmatchUrl = `https://www.musixmatch.com/search/${encodeURIComponent(songTitle.replace(' ', '+'))}`;
@@ -60,7 +60,7 @@ exports.initialize = async function ({ req, res }) {
             }
         }
 
-        // Check if lyrics were found either from Google or Musixmatch
+        
         if (lyrics) {
             return res.json({
                 title: songTitle,
