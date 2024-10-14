@@ -16,11 +16,11 @@ try {
       router.get(routePath, (req, res) => script.initialize({ req, res }));
       global.api.set(script.config.name, script); // Register API to global.api map
       n++;
-      console.log(`${green('[ Ajiro ]')} ${cyan('→')} ${blue(`Successfully loaded ${file}`)}`);
+      console.log(`${green('[ Val ]')} ${cyan('→')} ${blue(`Successfully loaded ${file}`)}`);
     }
   }
 
-  console.log(`${green('[ Ajiro ]')} ${cyan('→')} ${blue(`Successfully loaded ${n} API files`)}`);
+  console.log(`${green('[ BIRU ]')} ${cyan('→')} ${blue(`Successfully loaded ${n} API files`)}`);
 } catch (error) {
   console.log(error);
 }
