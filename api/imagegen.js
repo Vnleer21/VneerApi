@@ -26,7 +26,7 @@ exports.initialize = async function ({ req, res }) {
 
         const model = 'prodia';
         const imageOptions = {
-            count: 2,              // Generates 2 images by default
+            count: 1,              // Generates 2 images by default
             nsfw: false,            // Disable NSFW content
             deepCheck: false,      // Disable deep check for NSFW content
             nsfwWords: [],         // Optional NSFW words to check the image content for
