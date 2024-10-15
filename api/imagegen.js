@@ -16,7 +16,6 @@ exports.config = {
 
 exports.initialize = async function ({ req, res }) {
     try {
-        
         const imagePrompt = req.query.prompt;
         if (!imagePrompt) {
             return res.status(400).json({ error: "No image prompt provided." });
@@ -31,7 +30,7 @@ exports.initialize = async function ({ req, res }) {
             nsfw: false,            // Disable NSFW content
             deepCheck: false,      // Disable deep check for NSFW content
             nsfwWords: [],         // Optional NSFW words to check the image content for
-            Api_key: 'eaca0864-70a4-4653-8dc7-f5ba3918326f', 
+            Api_key: 'eaca0864-70a4-4653-8dc7-f5ba3918326f',
             negative_prompt: "",
             sampler: "DPM++ 2M Karras",
             height: 512,
@@ -43,13 +42,11 @@ exports.initialize = async function ({ req, res }) {
         };
 
         try {
-            
             const imageResponse = await ApexImagine(model, imagePrompt, imageOptions);
 
             if (imageResponse && imageResponse.length > 0) {
-                
+                // Return only the images array without any additional message
                 return res.json({
-                    message: `Images successfully generated for prompt: "${imagePrompt}".`,
                     images: imageResponse
                 });
             } else {
