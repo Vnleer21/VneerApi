@@ -1,3 +1,9 @@
+const stylePresets = [
+  "3d-model", "analog-film", "anime", "cinematic", "comic-book", "digital-art",
+  "enhance", "fantasy-art", "isometric", "line-art", "low-poly", "neon-punk", 
+  "origami", "photographic", "pixel-art", "texture", "craft-clay"
+];
+
 const { ApexImagine } = require('apexify.js');
 
 exports.config = {
@@ -16,11 +22,13 @@ exports.initialize = async function ({ req, res }) {
             return res.status(400).json({ error: "No image prompt provided." });
         }
 
-        
+        // Randomly choose an image style from the array
+        const randomStyle = stylePresets[Math.floor(Math.random() * stylePresets.length)];
+
         const model = 'prodia';
         const imageOptions = {
             count: 2,              // Generates 2 images by default
-            nsfw: true,           // Disable NSFW content
+            nsfw: true,            // Disable NSFW content
             deepCheck: false,      // Disable deep check for NSFW content
             nsfwWords: [],         // Optional NSFW words to check the image content for
             Api_key: 'eaca0864-70a4-4653-8dc7-f5ba3918326f', 
@@ -31,7 +39,7 @@ exports.initialize = async function ({ req, res }) {
             cfg_scale: 9,
             steps: 20,
             seed: -1,
-            image_style: "3-model"
+            image_style: randomStyle   // Use the randomly selected style
         };
 
         try {
