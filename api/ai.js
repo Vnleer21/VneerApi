@@ -47,7 +47,7 @@ exports.initialize = async function ({ req, res, font, color }) {
         try {
             const response = await axios.post(url, data, { headers });
             // Replace HTML tags like <b> and </b> with markdown-style or plain text
-            answer = response.data.answer.replace(/<\/?b>/g, '');
+            answer = response.data.answer.replace(/<\/?b>/g, '**');
 
             conversationHistories[senderID].push({ role: "assistant", content: answer });
             success = true;
