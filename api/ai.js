@@ -7,7 +7,7 @@ exports.config = {
     name: 'ai',
     author: "biru",
     description: 'Interact with GPT-4O-Mini Fast & Lite Version.',
-    usage: [`/ai?prompt=hello&uid=${Date.now()}`],
+    usage: [`/ai?prompt=who%20are%20you&uid=${Date.now()}`],
     category: 'ai',
 };
 
