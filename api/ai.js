@@ -46,7 +46,8 @@ exports.initialize = async function ({ req, res, font, color }) {
     while (retries > 0 && !success) {
         try {
             const response = await axios.post(url, data, { headers });
-            answer = response.data.answer.replace(/\*\*(.*?)\*\*/g, (_, text) => font.bold(text));
+            // Check if font exists and has a bold method, otherwise use basic string formatting
+            answer = response.data.answer.replace(/\*\*(.*?)\*\*/g, (_, text) => (font?.bold ? font.bold(text) : `<b>${text}</b>`));
 
             conversationHistories[senderID].push({ role: "assistant", content: answer });
             success = true;
