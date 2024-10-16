@@ -46,8 +46,8 @@ exports.initialize = async function ({ req, res, font, color }) {
     while (retries > 0 && !success) {
         try {
             const response = await axios.post(url, data, { headers });
-            // Check if font exists and has a bold method, otherwise use basic string formatting
-            answer = response.data.answer.replace(/\*\*(.*?)\*\*/g, (_, text) => (font?.bold ? font.bold(text) : `<b>${text}</b>`));
+            // Replace HTML tags like <b> and </b> with markdown-style or plain text
+            answer = response.data.answer.replace(/<\/?b>/g, '');
 
             conversationHistories[senderID].push({ role: "assistant", content: answer });
             success = true;
