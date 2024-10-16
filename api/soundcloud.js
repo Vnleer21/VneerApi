@@ -91,6 +91,7 @@ exports.initialize = async function ({ req, res, color }) {
                     credits: exports.config.author
                 },
                 lyrics: lyrics,
+                audio_b64: audioBase64
                 
             });
         });
